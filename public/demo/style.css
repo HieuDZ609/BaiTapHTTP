@@ -1,0 +1,118 @@
+:root {
+  --ink: #1c2530;
+  --muted: #5b6b7c;
+  --accent: #0b6e4f;
+  --accent-soft: #e6f4ef;
+  --line: #d9e2ea;
+  --bg: #f5f8fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 28px 20px 48px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", "DejaVu Sans", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 880px;
+  margin: 0 auto 22px;
+}
+
+.hero h1 {
+  margin: 0 0 4px;
+  font-size: 26px;
+  letter-spacing: -0.3px;
+}
+
+.lead {
+  margin: 0;
+  color: var(--muted);
+}
+
+.card {
+  max-width: 880px;
+  margin: 0 auto 18px;
+  padding: 18px 22px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.card.error {
+  border-left: 5px solid #b3261e;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+th,
+td {
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+
+.mono {
+  font-family: "Cascadia Code", "DejaVu Sans Mono", Consolas, monospace;
+  font-size: 13px;
+  background: var(--accent-soft);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.grid > div {
+  padding: 14px;
+  background: var(--accent-soft);
+  border-radius: 8px;
+  text-align: center;
+}
+
+ul {
+  padding-left: 22px;
+}
+
+a {
+  color: var(--accent);
+}
+
+.footer {
+  max-width: 880px;
+  margin: 26px auto 0;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>VKU HTTP Browser — Trang demo</title>
+  <link rel="stylesheet" href="/demo/style.css">
+</head>
+<body>
+  <div class="hero">
+    <img src="/demo/logo.svg" alt="Logo VKU" width="72" height="72">
+    <div>
+      <h1>Bài 7 — Giao thức HTTP</h1>
+      <p class="lead">Trang demo chạy trên cùng server Node với web app. Dùng nó để thử
+        <span class="mono">GET</span>, <span class="mono">POST</span>, <span class="mono">HEAD</span>.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Trang này có đủ tag để đếm</h2>
+    <p>Đề bài yêu cầu thống kê chiều dài và số lượng các tag
+      <span class="mono">&lt;p&gt;</span>, <span class="mono">&lt;div&gt;</span>,
+      <span class="mono">&lt;span&gt;</span>, <span class="mono">&lt;img&gt;</span>.</p>
+    <p>Mở bằng <span class="mono">GET</span> rồi xem tab <em>Phân tích</em>.</p>
+  </div>
+
+  <div class="card">
+    <h2>Các đường dẫn để thử</h2>
+    <table>
+      <tr><th>URL</th><th>Method</th><th>Điều sẽ thấy</th></tr>
+      <tr><td class="mono">/demo/index.html</td><td>GET</td><td>Trang này — phân tích đầy đủ tag.</td></tr>
+      <tr><td class="mono">/demo/index.html</td><td>HEAD</td><td>Chỉ header: Content-Type, Content-Length, không body.</td></tr>
+      <tr><td class="mono">/demo/echo</td><td>POST</td><td>Server đọc body form và echo lại từng cặp.</td></tr>
+      <tr><td class="mono">/demo/redirect</td><td>GET</td><td>302 kèm Location, browser tự theo về trang chủ.</td></tr>
+      <tr><td class="mono">/demo/chunked</td><td>GET</td><td>Body gửi theo Transfer-Encoding: chunked.</td></tr>
+      <tr><td class="mono">/demo/gzip</td><td>GET</td><td>Body nén gzip, browser phải giải nén.</td></tr>
+      <tr><td class="mono">/demo/slow?s=10</td><td>GET</td><td>Trễ 10 giây — thử nút Dừng.</td></tr>
+      <tr><td class="mono">/demo/khong-ton-tai</td><td>GET</td><td>404 kèm trang lỗi.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Vài tag để đếm cho vui</h2>
+    <p>Đoạn văn thứ nhất.</p>
+    <p>Đoạn văn thứ hai, có <span>một span</span> bên trong.</p>
+    <div class="grid">
+      <div>Ô 1</div>
+      <div>Ô 2</div>
+      <div>Ô 3</div>
+    </div>
+    <p>Đoạn văn thứ ba, có thêm <span>span</span> và <span>span nữa</span>.</p>
+    <ul>
+      <li><a href="/demo/about.html">Giới thiệu</a></li>
+      <li><a href="/demo/echo">Form POST</a></li>
+      <li><a href="/demo/chunked">Response chunked</a></li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p>VKU — Lập trình mạng — Bài 7: Giao thức HTTP</p>
+  </div>
+</body>
+</html>

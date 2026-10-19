@@ -1,0 +1,10 @@
+Tạo một browser đơn giản
+Browser này cho phép người dùng gõ URL yêu cầu tài nguyên của một trang Web nào đó.
+Browser cũng cho phép thực hiện 3 loại request 
+GET
+POST
+HEAD
+Nếu phương thức request là POST hoặc GET, thì Browser này phân tích trang HTML trả lại và hiển thị chiều dài, số lượng tag <p>, <div>, <span>, <imag> của trang HTML. 
+Nếu SV nào có khả năng tạo Browser có khả năng hiểu và biểu diễn trang HTML thì càng tốt.
+Nếu phương thức request là HEAD, Browser hiển thị thông tin về tài nguyên 
+

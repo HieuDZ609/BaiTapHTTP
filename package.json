@@ -1,0 +1,14 @@
+{
+  "name": "vku-http-browser",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bài 7 - Giao thức HTTP: browser đơn giản (GET/POST/HEAD) dạng web app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

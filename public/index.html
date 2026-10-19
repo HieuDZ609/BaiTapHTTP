@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VKU HTTP Browser — Bài 7: Giao thức HTTP</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="app-bar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">VKU</span>
+      <div>
+        <h1>HTTP Browser</h1>
+        <p>Bài 7 · Giao thức HTTP · GET / POST / HEAD</p>
+      </div>
+    </div>
+    <span class="badge" id="server-badge">Node.js</span>
+  </header>
+
+  <main class="shell">
+    <section class="request-card" aria-label="Thanh địa chỉ">
+      <div class="request-row">
+        <div class="methods" id="method-group" role="group" aria-label="Phương thức request">
+          <button type="button" class="method active" data-method="GET" aria-pressed="true"
+                  title="GET — tải tài nguyên">GET</button>
+          <button type="button" class="method" data-method="POST" aria-pressed="false"
+                  title="POST — gửi dữ liệu form lên server">POST</button>
+          <button type="button" class="method" data-method="HEAD" aria-pressed="false"
+                  title="HEAD — chỉ lấy header, không lấy body">HEAD</button>
+        </div>
+        <input id="url" type="text" spellcheck="false" autocomplete="off"
+               value="http://localhost:3000/demo/index.html"
+               placeholder="Nhập URL, ví dụ vku.udn.vn hoặc https://tuoitre.vn"
+               aria-label="Địa chỉ URL">
+        <button id="send" class="primary">Gửi yêu cầu</button>
+        <button id="stop" class="ghost" disabled>Dừng</button>
+      </div>
+
+      <div class="post-row" id="post-row" hidden>
+        <label for="post-data">Dữ liệu POST</label>
+        <textarea id="post-data" rows="2" spellcheck="false"
+                  placeholder="ten=Hà Điền Trung Hiếu&amp;lop=24IT062"></textarea>
+        <span class="hint">Dạng <code>khoá=giá_trị&amp;khoá2=giá_trị2</code> — tiếng Việt được tự động percent-encode.</span>
+      </div>
+
+      <div class="quick-links">
+        <span>Thử nhanh:</span>
+        <button class="chip" data-url="/demo/index.html" data-method="GET">GET trang chủ</button>
+        <button class="chip" data-url="/demo/index.html" data-method="HEAD">HEAD trang chủ</button>
+        <button class="chip" data-url="/demo/echo" data-method="POST">POST form</button>
+      </div>
+    </section>
+
+    <section class="status-line" aria-live="polite">
+      <span id="status" class="status">Sẵn sàng</span>
+      <span id="meta" class="meta"></span>
+      <span id="spinner" class="spinner" hidden aria-hidden="true"></span>
+    </section>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" role="tab" data-panel="preview">Xem trước</button>
+      <button class="tab" role="tab" data-panel="source">Nguồn HTML</button>
+      <button class="tab" role="tab" data-panel="analysis">Phân tích</button>
+      <button class="tab" role="tab" data-panel="headers">Header</button>
+      <button class="tab" role="tab" data-panel="log">Nhật ký giao thức</button>
+    </nav>
+
+    <section class="panels">
+      <div class="panel active" id="panel-preview" role="tabpanel">
+        <div class="empty">
+          <strong>Chưa có nội dung</strong>
+          <p>Nhập URL rồi bấm <em>Gửi yêu cầu</em> để xem trang được render.</p>
+        </div>
+      </div>
+      <div class="panel" id="panel-source" role="tabpanel">
+        <pre id="source-text" class="code"></pre>
+      </div>
+      <div class="panel" id="panel-analysis" role="tabpanel">
+        <div class="empty"><strong>Chưa có dữ liệu phân tích</strong></div>
+      </div>
+      <div class="panel" id="panel-headers" role="tabpanel">
+        <div class="empty"><strong>Chưa có header</strong></div>
+      </div>
+      <div class="panel" id="panel-log" role="tabpanel">
+        <pre id="log-text" class="code"></pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>GET / POST</strong> → tải tài nguyên rồi phân tích chiều dài và số tag
+        <code>&lt;p&gt;</code> <code>&lt;div&gt;</code> <code>&lt;span&gt;</code> <code>&lt;img&gt;</code>.
+        <strong>HEAD</strong> → chỉ nhận header, hiển thị thông tin tài nguyên.</p>
+      <p class="muted">Server phụ trợ fetch hộ trang web (trình duyệt bị CORS chặn), sau đó trả JSON về giao diện.</p>
+    </footer>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

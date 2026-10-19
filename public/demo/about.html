@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Giới thiệu — trang demo</title>
+  <link rel="stylesheet" href="/demo/style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>Về bài lab này</h1>
+    <p>Bài lab yêu cầu một browser đơn giản gửi được ba loại request
+      <span class="mono">GET</span>, <span class="mono">POST</span>, <span class="mono">HEAD</span>
+      tới một web server.</p>
+    <p>Với <span class="mono">GET</span> và <span class="mono">POST</span>, browser đọc HTML trả về rồi
+      thống kê chiều dài và số lượng tag <span class="mono">&lt;p&gt;</span>,
+      <span class="mono">&lt;div&gt;</span>, <span class="mono">&lt;span&gt;</span>,
+      <span class="mono">&lt;img&gt;</span>.</p>
+    <p>Với <span class="mono">HEAD</span>, browser chỉ nhận header và hiển thị thông tin tài nguyên.</p>
+  </div>
+
+  <div class="card">
+    <h2>Vì sao phải fetch qua server?</h2>
+    <p>Trình duyệt chặn JavaScript đọc nội dung trang khác origin (CORS), nên web app gửi URL về
+      server Node; server fetch hộ rồi trả JSON. Nhờ vậy vẫn phân tích được HTML của bất kỳ trang nào.</p>
+  </div>
+
+  <p><a href="/demo/index.html">Quay lại trang chủ</a></p>
+</body>
+</html>

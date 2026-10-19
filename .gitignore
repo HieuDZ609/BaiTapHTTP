@@ -1,0 +1,13 @@
+# Log và PID khi chạy ./serve.sh
+.run/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Hệ điều hành / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
