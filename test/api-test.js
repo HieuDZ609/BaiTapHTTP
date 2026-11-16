@@ -109,6 +109,46 @@ async function main() {
   check('có Content-Encoding: gzip', gzipHeaders['content-encoding'] === 'gzip');
   check('giải nén gzip đúng', gzip.data.analysis?.counts.p?.count === 7);
 
+  console.log('\nTrình duyệt (/view, /api/source, /api/raw)');
+  const demoUrl = `${BASE}/demo/index.html`;
+  const viewResponse = await fetch(`${BASE}/view?url=${encodeURIComponent(demoUrl)}`);
+  const viewHtml = await viewResponse.text();
+  check('/view trả 200', viewResponse.status === 200);
+  check('chèn <base> đúng URL cuối', viewHtml.includes(`<base href="${demoUrl}">`));
+  check('chèn script bắt click link', viewHtml.includes("source: 'httpbrowser'"));
+
+  const metaMatch = /<script type="application\/json" id="httpbrowser-meta">([\s\S]*?)<\/script>/.exec(viewHtml);
+  let viewMeta = {};
+  try {
+    viewMeta = JSON.parse(metaMatch ? metaMatch[1] : '{}');
+  } catch {
+    viewMeta = {};
+  }
+  check('meta báo tải thành công', viewMeta.ok === true);
+  check('meta có phân tích tag', viewMeta.analysis?.counts?.p?.count === 7);
+
+  const youtubeView = await fetch(`${BASE}/view?url=${encodeURIComponent('https://www.youtube.com/watch?v=dQw4w9WgXcQ')}`);
+  const youtubeHtml = await youtubeView.text();
+  check('YouTube dùng iframe embed chính thức',
+    youtubeHtml.includes('youtube.com/embed/dQw4w9WgXcQ'));
+  check('trang YouTube có meta riêng', youtubeHtml.includes('"youtube":true'));
+
+  const badView = await fetch(`${BASE}/view?url=ftp%3A%2F%2Fexample.com`);
+  const badViewHtml = await badView.text();
+  check('/view báo lỗi URL không hợp lệ',
+    badViewHtml.includes('Địa chỉ không hợp lệ'));
+  check('trang lỗi có meta ok=false', badViewHtml.includes('"ok":false'));
+
+  const sourceResponse = await fetch(`${BASE}/api/source?url=${encodeURIComponent(demoUrl)}`);
+  const sourceText = await sourceResponse.text();
+  check('/api/source trả mã nguồn', sourceResponse.status === 200 && sourceText.includes('<title>'));
+
+  const rawResponse = await fetch(`${BASE}/api/raw?url=${encodeURIComponent(`${BASE}/demo/logo.svg`)}`);
+  const rawText = await rawResponse.text();
+  check('/api/raw trả đúng loại tệp',
+    rawResponse.status === 200 && /svg/.test(rawResponse.headers.get('content-type') || ''));
+  check('/api/raw trả đúng nội dung', rawText.includes('<svg'));
+
   console.log(`\nKết quả: ${passed} đạt, ${failed} lỗi`);
   process.exit(failed === 0 ? 0 : 1);
 }

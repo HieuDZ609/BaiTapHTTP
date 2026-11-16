@@ -1,6 +1,9 @@
 # Log và PID khi chạy ./serve.sh
 .run/
 
+# Dữ liệu runtime (lịch sử trình duyệt)
+data/db.json
+
 # Node
 node_modules/
 npm-debug.log*
